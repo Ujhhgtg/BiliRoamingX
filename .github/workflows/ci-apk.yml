@@ -40,12 +40,9 @@ jobs:
       - name: Patch Bilibili
         run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 1,2,3 bilibili.apk
 
-      - name: List files
-        run: ls .
-
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v4
-      #   if: success()
-      #   with:
-      #     name: bilibili.apk
-      #     path: 'build'
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: bilibili-patched.apk
+          path: '.'
