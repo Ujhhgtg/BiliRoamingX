@@ -1,0 +1,51 @@
+name: CI Apk
+
+# i'm tired to set up a workflow trigger
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: 'recursive'
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Download ReVanced Cli
+        run: wget "https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar" 
+
+      - name: Download Bilibili
+        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
+
+      - name: Download patches
+        run: wget "https://nightly.link/Ujhhgtg/BiliRoamingX/workflows/ci/main" -O patches.zip
+
+      - name: Unzip patches
+        run: unzip patches.zip -d patches
+
+      - name: Rename patches
+        run: mv patches/BiliRoamingX-integrations-*.apk integrations.apk && mv patches/BiliRoamingX-patches-*.jar patches.jar
+
+      - name: Patch Bilibili
+        run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 1,2,3 bilibili.apk
+
+      - name: List files
+        run: ls .
+
+      # - name: Upload artifacts
+      #   uses: actions/upload-artifact@v4
+      #   if: success()
+      #   with:
+      #     name: bilibili.apk
+      #     path: 'build'
