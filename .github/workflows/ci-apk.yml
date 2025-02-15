@@ -45,4 +45,4 @@ jobs:
         if: success()
         with:
           name: bilibili-patched.apk
-          path: '.'
+          path: './bilibili-patched.apk'
