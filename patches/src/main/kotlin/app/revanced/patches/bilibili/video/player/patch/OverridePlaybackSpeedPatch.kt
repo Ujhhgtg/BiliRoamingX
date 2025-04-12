@@ -33,7 +33,8 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
         CompatiblePackage(name = "tv.danmaku.bili"),
         CompatiblePackage(name = "tv.danmaku.bilibilihd"),
         CompatiblePackage(name = "com.bilibili.app.in")
-    ]
+    ],
+    use = false
 )
 object OverridePlaybackSpeedPatch : MultiMethodBytecodePatch(
     multiFingerprints = setOf(
