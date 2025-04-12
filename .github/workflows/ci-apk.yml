@@ -2,6 +2,13 @@ name: CI Apk
 
 # i'm tired to set up a workflow trigger
 on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+      - '!.github/workflows/*'
   workflow_dispatch:
 
 jobs:
