@@ -57,7 +57,7 @@ jobs:
           path: './bilibili-patched.apk'
 
       - name: Write release info
-        run: date -u +%s --utc > ./release.md
+        run: echo android_b- > ./release.md && date -u +%s --utc >> ./release.md
 
       - name: Create release
         uses: ncipollo/release-action@v1.16.0
