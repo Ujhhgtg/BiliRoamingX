@@ -3,20 +3,20 @@ name: CI Apk
 # i'm tired to set up a workflow trigger
 on:
   push:
-#    branches:
-#      - main
-#    paths-ignore:
-#      - '**.md'
-#      - '.github/**'
-#      - '!.github/workflows/*'
-    tags:
-      - "*"
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+      - '!.github/workflows/*'
   workflow_dispatch:
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
@@ -58,10 +58,16 @@ jobs:
           path: './bilibili-patched.apk'
 
       - name: Write release info
-        run: echo android_b- > ./release.md && date -u +%s --utc >> ./release.md
+        run: echo "RELEASE=android_b-$(date -u +%s --utc)" >> $GITHUB_OUTPUT
+        id: write_release
+
+      - name: Write tag
+        run: echo "TAG=git log -1 --pretty=format:%H" >> $GITHUB_OUTPUT
+        id: write_tag
 
       - name: Create release
         uses: ncipollo/release-action@v1.16.0
         with:
+          tag: ${{ steps.write_tag.outputs.TAG }}
           artifacts: './bilibili-patched.apk'
-          bodyFile: './release.md'
+          body: ${{ steps.write_release.outputs.RELEASE }}
