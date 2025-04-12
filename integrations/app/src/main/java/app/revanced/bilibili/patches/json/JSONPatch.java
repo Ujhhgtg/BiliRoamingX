@@ -6,8 +6,8 @@ import androidx.annotation.Keep;
 
 import com.alibaba.fastjson.annotation.JSONField;
 // FIXME: breaks in 8.41.0
-//import com.bilibili.ad.adview.videodetail.danmakuv2.model.Dm;
-//import com.bilibili.ad.adview.videodetail.danmakuv2.model.DmAdvert;
+import com.bilibili.ad.adview.videodetail.danmakuv2.model.Dm;
+import com.bilibili.ad.adview.videodetail.danmakuv2.model.DmAdvert;
 import com.bilibili.app.authorspace.api.BiliSpace;
 import com.bilibili.app.comm.list.widget.recommend.RecommendModeGuidanceConfig;
 import com.bilibili.app.gemini.ugc.feature.share.ShareIconResult;
@@ -104,12 +104,12 @@ public class JSONPatch {
                 return null;
         }
         // FIXME: breaks in 8.41.0
-//        } else if (data instanceof DmAdvert dmAdvert) {
-//            if (Settings.BlockUpRcmdAds.get()) {
-//                List<Dm> ads = dmAdvert.getAds();
-//                if (ads != null)
-//                    ads.clear();
-//            }
+        } else if (data instanceof DmAdvert dmAdvert) {
+            if (Settings.BlockUpRcmdAds.get()) {
+                List<Dm> ads = dmAdvert.getAds();
+                if (ads != null)
+                    ads.clear();
+            }
         } else if (data instanceof LiveShoppingInfo info) {
             if (Settings.PurifyLivePopups.get().contains("shoppingCard")) {
                 info.shoppingCardDetail = null;
