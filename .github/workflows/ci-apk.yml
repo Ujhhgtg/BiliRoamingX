@@ -55,3 +55,12 @@ jobs:
         with:
           name: bilibili-patched.apk
           path: './bilibili-patched.apk'
+
+      - name: Write release info
+        run: date -u +%s --utc > ./release.md
+
+      - name: Create release
+        uses: ncipollo/release-action@v1.16.0
+        with:
+          artifacts: './bilibili-patched.apk'
+          bodyFile: './release.md'

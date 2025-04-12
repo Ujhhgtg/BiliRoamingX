@@ -6,7 +6,7 @@ import app.revanced.bilibili.utils.*
 
 object Settings {
     @JvmField val Debug = BooleanSetting(key = "debug", needReboot = true)
-    @JvmField val ShowHint = BooleanSetting(key = "show_hint")
+    @JvmField val HintShown = BooleanSetting(key = "hint_shown")
 
 
     // region Group: 解锁番剧限制

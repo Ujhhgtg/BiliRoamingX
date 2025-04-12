@@ -34,7 +34,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
         CompatiblePackage(name = "tv.danmaku.bilibilihd"),
         CompatiblePackage(name = "com.bilibili.app.in")
     ],
-    use = false
+    use = false // crashes the app when switching to fullscreen
 )
 object OverridePlaybackSpeedPatch : MultiMethodBytecodePatch(
     multiFingerprints = setOf(

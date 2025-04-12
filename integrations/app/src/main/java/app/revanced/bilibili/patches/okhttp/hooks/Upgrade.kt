@@ -31,7 +31,7 @@ class BUpgradeInfo(
 }
 
 object Upgrade : ApiHook() {
-    private const val UPGRADE_CHECK_API = "https://api.github.com/repos/BiliRoamingX/BiliRoamingX-PreBuilds/releases"
+    private const val UPGRADE_CHECK_API = "https://api.github.com/repos/Ujhhgtg/BiliRoamingX/releases"
     private val changelogRegex = Regex("""版本信息：(.*?)\n(.*)""", RegexOption.DOT_MATCHES_ALL)
     var fromSelf = false
 
