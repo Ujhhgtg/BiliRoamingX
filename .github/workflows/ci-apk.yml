@@ -3,12 +3,14 @@ name: CI Apk
 # i'm tired to set up a workflow trigger
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
-      - '.github/**'
-      - '!.github/workflows/*'
+#    branches:
+#      - main
+#    paths-ignore:
+#      - '**.md'
+#      - '.github/**'
+#      - '!.github/workflows/*'
+    tags:
+      - "*"
   workflow_dispatch:
 
 jobs:
@@ -20,14 +22,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           submodules: 'recursive'
 
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Download ReVanced Cli
         run: wget "https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar" 
