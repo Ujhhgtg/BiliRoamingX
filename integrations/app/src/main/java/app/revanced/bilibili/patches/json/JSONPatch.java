@@ -11,6 +11,7 @@ import com.bilibili.ad.adview.videodetail.danmakuv2.model.DmAdvert;
 import com.bilibili.app.authorspace.api.BiliSpace;
 import com.bilibili.app.comm.list.widget.recommend.RecommendModeGuidanceConfig;
 import com.bilibili.app.gemini.ugc.feature.share.ShareIconResult;
+import com.bilibili.bililive.extension.api.home.BiliLiveHomeFeedPage;
 import com.bilibili.bililive.room.biz.reverse.bean.LiveRoomReserveInfo;
 import com.bilibili.bililive.room.biz.shopping.beans.LiveGoodsCardInfo;
 import com.bilibili.bililive.room.biz.shopping.beans.LiveShoppingGotoBuyInfo;
@@ -109,6 +110,10 @@ public class JSONPatch {
                 List<Dm> ads = dmAdvert.getAds();
                 if (ads != null)
                     ads.clear();
+            }
+        } else if (data instanceof BiliLiveHomeFeedPage pageData) {
+            if (Settings.HideLiveBanner.get()) {
+                pageData.pageList.removeIf(item -> "banner_v2".equals(item.cardType));
             }
         } else if (data instanceof LiveShoppingInfo info) {
             if (Settings.PurifyLivePopups.get().contains("shoppingCard")) {
