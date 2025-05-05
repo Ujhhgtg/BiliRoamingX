@@ -86,6 +86,7 @@ object Settings {
     @JvmField val BlockPopularLive = BooleanSetting(key = "block_popular_live")
     @JvmField val BlockHomeRecentUsed = BooleanSetting(key = "block_home_recent_used")
     @JvmField val PegasusCoverRatio = StringSetting(key = "pegasus_cover_ratio", defValue = "0", needReboot = true)
+    @JvmField val HideLiveBanner = BooleanSetting(key = "hide_live_banner", needReboot = true)
     // endregion
 
 

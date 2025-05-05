@@ -43,6 +43,9 @@
             android:summary="@string/biliroaming_add_korea_summary"
             android:title="@string/biliroaming_add_korea_title" />
         <androidx.preference.SwitchPreferenceCompat
+            android:key="hide_live_banner"
+            android:title="@string/biliroaming_hide_live_banner_title" />
+        <androidx.preference.SwitchPreferenceCompat
             android:key="purify_game"
             android:title="@string/biliroaming_purify_game_title" />
         <androidx.preference.SwitchPreferenceCompat
