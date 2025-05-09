@@ -140,6 +140,9 @@ object ViewUniteReplyHook {
                     } else if (module.hasLiveOrder()) {
                         if (Settings.BlockLiveOrder())
                             toRemoveIndexes.add(index)
+                    } else if (module.hasHonor()) {
+                        if (Settings.BlockHotSearch())
+                            toRemoveIndexes.add(index)
                     }
                 }
                 toRemoveIndexes.asReversed().forEach {
