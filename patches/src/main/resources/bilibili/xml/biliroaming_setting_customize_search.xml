@@ -23,4 +23,10 @@
             android:key="search_keywords"
             android:title="@string/biliroaming_filter_search_keywords_title" />
     </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory>
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="force_enable_partition_filter"
+            android:summary="@string/biliroaming_force_enable_partition_filter_summary"
+            android:title="@string/biliroaming_force_enable_partition_filter_title" />
+    </androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>

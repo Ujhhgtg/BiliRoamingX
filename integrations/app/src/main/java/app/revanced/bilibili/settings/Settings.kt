@@ -86,6 +86,7 @@ object Settings {
     @JvmField val BlockPopularLive = BooleanSetting(key = "block_popular_live")
     @JvmField val BlockHomeRecentUsed = BooleanSetting(key = "block_home_recent_used")
     @JvmField val PegasusCoverRatio = StringSetting(key = "pegasus_cover_ratio", defValue = "0", needReboot = true)
+    @JvmField val AddOldRegion = BooleanSetting(key = "add_old_region", needReboot = true)
     @JvmField val HideLiveBanner = BooleanSetting(key = "hide_live_banner", needReboot = true)
     // endregion
 
@@ -189,6 +190,7 @@ object Settings {
     @JvmField val UnlockGif = BooleanSetting(key = "unlock_gif")
     @JvmField val TimeAirborne = BooleanSetting(key = "time_airborne")
     @JvmField val OldDmPanel = BooleanSetting(key = "old_dm_panel")
+    @JvmField val BlockHotSearch = BooleanSetting(key = "block_hot_search")
     // endregion
 
 
@@ -212,6 +214,7 @@ object Settings {
     @JvmField val FilterSearchUp = StringSetSetting(key = "filter_search_up")
     @JvmField val FilterSearchUpRegexMode = BooleanSetting(key = "filter_search_up_regex")
     @JvmField val FilterSearchUid = StringSetSetting(key = "filter_search_uid")
+    @JvmField val ForceEnablePartitionFilter = BooleanSetting(key = "force_enable_partition_filter")
     // endregion
 
 

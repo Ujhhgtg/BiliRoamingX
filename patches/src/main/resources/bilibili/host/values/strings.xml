@@ -493,4 +493,10 @@
     <string name="biliroaming_old_dm_panel_summary">目前主要区别在于旧版有弹幕优选，可以过滤更多弹幕</string>
     <string name="biliroaming_live_no_block_title">屏蔽实名认证弹窗</string>
     <string name="biliroaming_hide_live_banner_title">隐藏直播分区Banner卡片</string>
+    <string name="biliroaming_force_enable_partition_filter_title">强制启用分区筛选</string>
+    <string name="biliroaming_force_enable_partition_filter_summary">启用被灰度关闭的搜索页筛选内容分区</string>
+    <string name="biliroaming_block_hot_search_title">屏蔽视频热搜横幅</string>
+    <string name="biliroaming_block_hot_search_summary">如: 热搜第1名·xxxxxx</string>
+    <string name="biliroaming_add_old_region_title">添加旧版分区入口</string>
+    <string name="biliroaming_add_old_region_summary">使用被灰度下线的二级分区</string>
 </resources>

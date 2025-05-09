@@ -43,6 +43,10 @@
             android:summary="@string/biliroaming_block_activity_tab_summary"
             android:title="@string/biliroaming_block_activity_tab_title" />
         <androidx.preference.SwitchPreferenceCompat
+            android:key="block_hot_search"
+            android:summary="@string/biliroaming_block_hot_search_summary"
+            android:title="@string/biliroaming_block_hot_search_title" />
+        <androidx.preference.SwitchPreferenceCompat
             android:key="not_lock_orientation"
             android:summary="@string/biliroaming_not_lock_orientation_summary"
             android:title="@string/biliroaming_not_lock_orientation_title" />

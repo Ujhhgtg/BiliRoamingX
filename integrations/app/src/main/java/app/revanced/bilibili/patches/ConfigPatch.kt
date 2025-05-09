@@ -62,6 +62,7 @@ object ConfigPatch {
         AbHook(Settings.DisableP2PUpload, false, "ijkplayer.p2p_hot_push", "ijkplayer.p2p_upload"),
         AbHook(Settings.PreferStableCdn, false, "ijkplayer.p2p_download"),
         AbHook(Settings.DisableWebViewNonOfficialAlert, false, "ff.webview.controller.switch_tips_whitelist"),
+        AbHook(Settings.ForceEnablePartitionFilter, true, "search.filter.category_show"),
     )
 
     @JvmStatic
