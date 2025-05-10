@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorFingerprint
 import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorNewFingerprint
+import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorNew2Fingerprint
 import app.revanced.patches.bilibili.misc.json.fingerprints.PegasusParserFingerprint
 import app.revanced.patches.bilibili.utils.annotation
 import app.revanced.patches.bilibili.utils.cloneMutable
@@ -31,7 +32,8 @@ object PegasusPatch : BytecodePatch(
     setOf(
         PegasusParserFingerprint,
         CardClickProcessorFingerprint,
-        CardClickProcessorNewFingerprint
+        CardClickProcessorNewFingerprint,
+        CardClickProcessorNew2Fingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -90,5 +92,6 @@ object PegasusPatch : BytecodePatch(
             ?: throw CardClickProcessorFingerprint.exception
         // only exist on 7.63.0 alpha version now
         CardClickProcessorNewFingerprint.result?.mutableMethod?.hookOnFeedClick()
+            ?: CardClickProcessorNew2Fingerprint.result?.mutableMethod?.hookOnFeedClick()
     }
 }
