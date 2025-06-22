@@ -63,6 +63,7 @@ object ConfigPatch {
         AbHook(Settings.PreferStableCdn, false, "ijkplayer.p2p_download"),
         AbHook(Settings.DisableWebViewNonOfficialAlert, false, "ff.webview.controller.switch_tips_whitelist"),
         AbHook(Settings.ForceEnablePartitionFilter, true, "search.filter.category_show"),
+        AbHook(Settings.ForceOldComments, false, "comment.next_appearance", "comment.next_appearance_experiment_2", "comment.next_appearance_experiment_2_1", "comment.next_appearance_experiment_3", "comment.v3"),
     )
 
     @JvmStatic

@@ -499,4 +499,5 @@
     <string name="biliroaming_block_hot_search_summary">如: 热搜第1名·xxxxxx</string>
     <string name="biliroaming_add_old_region_title">添加旧版分区入口</string>
     <string name="biliroaming_add_old_region_summary">使用被灰度下线的二级分区</string>
+    <string name="biliroaming_force_old_comments_title" public="false">恢复旧版评论区样式</string>
 </resources>
