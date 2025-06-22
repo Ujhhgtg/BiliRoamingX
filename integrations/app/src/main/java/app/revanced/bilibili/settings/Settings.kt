@@ -191,6 +191,7 @@ object Settings {
     @JvmField val TimeAirborne = BooleanSetting(key = "time_airborne")
     @JvmField val OldDmPanel = BooleanSetting(key = "old_dm_panel")
     @JvmField val BlockHotSearch = BooleanSetting(key = "block_hot_search")
+    @JvmField val ForceOldComments = BooleanSetting(key = "force_old_comments")
     // endregion
 
 

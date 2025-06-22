@@ -106,6 +106,9 @@
             android:key="unlock_gif"
             android:summary="@string/biliroaming_unlock_gif_summary"
             android:title="@string/biliroaming_unlock_gif_title" />
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="force_old_comments"
+            android:title="@string/biliroaming_force_old_comments_title" />
         <androidx.preference.Preference
             android:fragment="app.revanced.bilibili.settings.fragments.FilterCommentFragment"
             android:key="fragment_filter_comment"
