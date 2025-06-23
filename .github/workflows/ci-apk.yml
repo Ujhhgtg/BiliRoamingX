@@ -31,7 +31,7 @@ jobs:
           java-version: '21'
 
       - name: Download ReVanced Cli
-        run: wget "https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar" 
+        run: wget "https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar"
 
       - name: Download Bilibili
 #        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
@@ -57,17 +57,9 @@ jobs:
           name: bilibili-patched.apk
           path: './bilibili-patched.apk'
 
-      - name: Write release info
-        run: echo "RELEASE=android_b-$(date -u +%s --utc)" >> $GITHUB_OUTPUT
-        id: write_release
-
-      - name: Write tag
-        run: echo "TAG=git log -1 --pretty=format:%H" >> $GITHUB_OUTPUT
-        id: write_tag
-
       - name: Create release
         uses: ncipollo/release-action@v1.16.0
         with:
-          tag: ${{ steps.write_tag.outputs.TAG }}
+          tag: 'ci'
           artifacts: './bilibili-patched.apk'
-          body: ${{ steps.write_release.outputs.RELEASE }}
+          body: 'Latest CI artifact'
