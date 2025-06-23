@@ -55,9 +55,8 @@ object PlayURLPlayViewUGC : MossHook<PlayViewReq, PlayViewReply>() {
                     }
                 }
             }
-            if (req.download < 1 && !Accounts.isEffectiveVip
-                && Settings.TrialVipQuality()
-            ) TrialQualityPatch.makeVipFree(reply)
+            if (req.download < 1 && !Accounts.isEffectiveVip && Settings.TrialVipQuality())
+                TrialQualityPatch.makeVipFree(reply)
             if (Utils.isHd() && Settings.NotLockOrientation()) {
                 val dashVideo = reply.videoInfo.streamListList.firstNotNullOfOrNull {
                     if (it.hasDashVideo()) it.dashVideo else null

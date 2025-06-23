@@ -14,7 +14,6 @@ import app.revanced.bilibili.settings.Settings;
 import app.revanced.bilibili.utils.Utils;
 
 public class TrialQualityPatch {
-
     private static int dp2px(float dp) {
         return (int) ((dp * Utils.getContext().getResources().getDisplayMetrics().density) + 0.5f);
     }
@@ -22,25 +21,25 @@ public class TrialQualityPatch {
     public static void makeVipFree(PlayViewReply playViewReply) {
         playViewReply.clearAb();
         playViewReply.getVideoInfo().getStreamListList().stream().filter(Stream::hasDashVideo)
-                .forEach(e -> {
-                    var streamInfo = e.getStreamInfo();
-                    if (streamInfo.getNeedVip()) {
-                        streamInfo.setNeedVip(false);
-                        streamInfo.setVipFree(true);
-                    }
-                });
+            .forEach(e -> {
+                var streamInfo = e.getStreamInfo();
+                if (streamInfo.getNeedVip()) {
+                    streamInfo.setNeedVip(false);
+                    streamInfo.setVipFree(true);
+                }
+            });
     }
 
     public static void makeVipFree(PlayViewUniteReply playViewUniteReply) {
         playViewUniteReply.clearQnTrialInfo();
         playViewUniteReply.getVodInfo().getStreamListList().stream().filter(com.bapis.bilibili.playershared.Stream::hasDashVideo)
-                .forEach(e -> {
-                    var streamInfo = e.getStreamInfo();
-                    if (streamInfo.getNeedVip()) {
-                        streamInfo.setNeedVip(false);
-                        streamInfo.setVipFree(true);
-                    }
-                });
+            .forEach(e -> {
+                var streamInfo = e.getStreamInfo();
+                if (streamInfo.getNeedVip()) {
+                    streamInfo.setNeedVip(false);
+                    streamInfo.setVipFree(true);
+                }
+            });
     }
 
     @Keep

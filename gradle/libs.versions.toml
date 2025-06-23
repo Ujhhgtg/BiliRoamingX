@@ -36,7 +36,7 @@ kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlin
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 fastjson = { module = "com.alibaba:fastjson", version.ref = "fastjson" }
 # patches
-revanced-patcher = { module = "kofua.app.revanced:revanced-patcher", version.ref = "revanced-patcher" }
+revanced-patcher = { module = "app.revanced:revanced-patcher", version.ref = "revanced-patcher" }
 smali = { module = "com.android.tools.smali:smali", version.ref = "smali" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 

@@ -18,6 +18,7 @@ import org.w3c.dom.Element
         CompatiblePackage(name = "com.bilibili.app.in")
     ]
 )
+@Suppress("unused")
 object MakeTextSelectablePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         val headlineLayouts = arrayOf(

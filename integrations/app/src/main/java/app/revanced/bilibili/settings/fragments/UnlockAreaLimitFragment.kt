@@ -2,9 +2,9 @@ package app.revanced.bilibili.settings.fragments
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.EditText
+import androidx.core.net.toUri
 import androidx.preference.Preference
 import app.revanced.bilibili.settings.Setting.Companion.prefs
 import app.revanced.bilibili.settings.dialog.SpeedTestDialog
@@ -41,7 +41,7 @@ class UnlockAreaLimitFragment : BiliRoamingBaseSettingFragment() {
                     }
                 }
                 setNegativeButton(Utils.getString("biliroaming_get_public_server")) { _, _ ->
-                    val uri = Uri.parse(Utils.getString("biliroaming_server_url"))
+                    val uri = Utils.getString("biliroaming_server_url").toUri()
                     val intent = Intent(Intent.ACTION_VIEW, uri)
                     startActivity(intent)
                 }
