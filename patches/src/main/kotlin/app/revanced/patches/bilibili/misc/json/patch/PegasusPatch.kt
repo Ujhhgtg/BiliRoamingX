@@ -11,6 +11,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorFingerprint
 import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorNewFingerprint
 import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorNew2Fingerprint
+import app.revanced.patches.bilibili.misc.json.fingerprints.CardClickProcessorNew3Fingerprint
 import app.revanced.patches.bilibili.misc.json.fingerprints.PegasusParserFingerprint
 import app.revanced.patches.bilibili.utils.annotation
 import app.revanced.patches.bilibili.utils.cloneMutable
@@ -33,7 +34,8 @@ object PegasusPatch : BytecodePatch(
         PegasusParserFingerprint,
         CardClickProcessorFingerprint,
         CardClickProcessorNewFingerprint,
-        CardClickProcessorNew2Fingerprint
+        CardClickProcessorNew2Fingerprint,
+        CardClickProcessorNew3Fingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -92,6 +94,37 @@ object PegasusPatch : BytecodePatch(
             ?: throw CardClickProcessorFingerprint.exception
         // only exist on 7.63.0 alpha version now
         CardClickProcessorNewFingerprint.result?.mutableMethod?.hookOnFeedClick()
-            ?: CardClickProcessorNew2Fingerprint.result?.mutableMethod?.hookOnFeedClick()
+            ?: CardClickProcessorNew2Fingerprint.result?.run {
+                mutableMethod.cloneMutable(registerCount = 8, clearImplementation = true).apply {
+                    mutableMethod.name += "_Origin"
+                    addInstructionsWithLabels(
+                        0, """
+                        invoke-static {p3}, Lapp/revanced/bilibili/patches/json/PegasusPatch;->onFeedClick(Lcom/bilibili/app/comm/list/common/data/DislikeReason;)Z
+                        move-result v0
+                        if-eqz v0, :jump
+                        return-void
+                        :jump
+                        invoke-static/range {p0 .. p6}, $mutableMethod
+                        return-void
+                    """.trimIndent()
+                    )
+                }.also { mutableClass.methods.add(it) }
+            }
+        CardClickProcessorNew3Fingerprint.result?.run {
+            mutableMethod.cloneMutable(registerCount = 9, clearImplementation = true).apply {
+                mutableMethod.name += "_Origin"
+                addInstructionsWithLabels(
+                    0, """
+                    invoke-static {p3}, Lapp/revanced/bilibili/patches/json/PegasusPatch;->onFeedClick(Lcom/bilibili/app/comm/list/common/data/DislikeReason;)Z
+                    move-result v0
+                    if-eqz v0, :jump
+                    return-void
+                    :jump
+                    invoke-static/range {p0 .. p7}, $mutableMethod
+                    return-void
+                """.trimIndent()
+                )
+            }.also { mutableClass.methods.add(it) }
+        }
     }
 }
