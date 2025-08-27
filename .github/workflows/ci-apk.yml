@@ -31,12 +31,12 @@ jobs:
           java-version: '21'
 
       - name: Download ReVanced Cli
-        run: wget "https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar"
+        run: wget "https://github.com/ReVanced/revanced-cli/releases/download/v5.0.1/revanced-cli.jar"
 
       - name: Download Bilibili
 #        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
-        # use old version 8.38.0 cuz new version has lot of breaking changes
-        run: wget "https://ucdl.25pp.com/fs08/2025/01/03/3/125_e40eb686b6659ac755a481b02904d48c.apk" -O bilibili.apk
+        # use old version 8.16.0 cuz new version has lot of breaking changes
+        run: wget "https://ucdl.25pp.com/fs08/2024/10/10/6/110_bd3b286f9053c9a1a2593b8205e1dc34.apk" -O bilibili.apk
 
       - name: Download patches
         run: wget "https://nightly.link/Ujhhgtg/BiliRoamingX/workflows/ci/main/patches.zip" -O patches.zip
@@ -48,7 +48,7 @@ jobs:
         run: mv patches/BiliRoamingX-integrations-*.apk integrations.apk && mv patches/BiliRoamingX-patches-*.jar patches.jar
 
       - name: Patch BiliBili
-        run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 1,2,3 bilibili.apk
+        run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar bilibili.apk
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -57,9 +57,9 @@ jobs:
           name: bilibili-patched.apk
           path: './bilibili-patched.apk'
 
-      - name: Create release
-        uses: ncipollo/release-action@v1.16.0
-        with:
-          tag: 'ci'
-          artifacts: './bilibili-patched.apk'
-          body: 'Latest CI artifact'
+#      - name: Create release
+#        uses: ncipollo/release-action@v1.16.0
+#        with:
+#          tag: 'ci'
+#          artifacts: './bilibili-patched.apk'
+#          body: 'Latest CI artifact'
