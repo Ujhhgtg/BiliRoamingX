@@ -36,7 +36,7 @@ jobs:
       - name: Download Bilibili
 #        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
         # use old version 8.38.0 cuz new version has lot of breaking changes
-        run: wget "https://ucdl.25pp.com/fs08/2025/01/03/3/125_e40eb686b6659ac755a481b02904d48c.apk" -O bilibili.apk
+        run: wget "https://ucdl.25pp.com/fs08/2024/10/10/6/110_bd3b286f9053c9a1a2593b8205e1dc34.apk" -O bilibili.apk
 
       - name: Download patches
         run: wget "https://nightly.link/Ujhhgtg/BiliRoamingX/workflows/ci/main/patches.zip" -O patches.zip
