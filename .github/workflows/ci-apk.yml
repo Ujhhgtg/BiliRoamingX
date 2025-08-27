@@ -31,7 +31,7 @@ jobs:
           java-version: '21'
 
       - name: Download ReVanced Cli
-        run: wget "https://github.com/ReVanced/revanced-cli/releases/download/v5.0.1/revanced-cli-5.0.1-all.jar" -O revanced-cli.jar
+        run: wget "https://github.com/ReVanced/revanced-cli/releases/download/v5.0.1/revanced-cli-5.0.1-all.jar" -o "revanced-cli.jar"
 
       - name: Download Bilibili
 #        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
