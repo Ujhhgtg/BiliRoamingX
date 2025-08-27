@@ -18,7 +18,8 @@ object RemoveVipSectionPatch {
     @JvmStatic
     private fun processingLayout(view: View?) {
         view ?: return
-        val vipLayout = view.findView<ViewGroup>("mine_vip_layout")
+        val vipLayout = view.findView<ViewGroup?>("mine_vip_layout")
+        vipLayout ?: return
         val mineRecycle = view.findView<ViewGroup>("mine_recycle")
         mineRecycle.clipToPadding = false
         if (Settings.RemoveVipSection()) {
