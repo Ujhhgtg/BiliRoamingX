@@ -11,6 +11,9 @@ on:
       - '!.github/workflows/*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
@@ -57,9 +60,25 @@ jobs:
           name: bilibili-patched.apk
           path: './bilibili-patched.apk'
 
-      - name: Create release
-        uses: ncipollo/release-action@v1.16.0
-        with:
-          tag: 'ci'
-          artifacts: './bilibili-patched.apk'
-          body: 'Latest CI artifact'
+      - name: Set up Git
+        run: |
+          git fetch --tags
+          TAG_NAME="v$(date +'%Y.%m.%d-%H%M')"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Create Git tag
+        run: |
+          git tag -f $TAG_NAME
+          git push -f origin $TAG_NAME
+
+      - name: Create or Update Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ env.TAG_NAME }}
+        run: |
+          # Try to delete existing release if it exists
+          gh release delete "$TAG_NAME" -y || true
+          # Create a new release with the tag
+          gh release create "$TAG_NAME" \
+            --title "GitHub Actions $TAG_NAME" \
+            --notes "$TAG_NAME"
