@@ -81,4 +81,5 @@ jobs:
           # Create a new release with the tag
           gh release create "$TAG_NAME" \
             --title "GitHub Actions $TAG_NAME" \
-            --notes "$TAG_NAME"
+            --notes "$TAG_NAME" \
+            ./bilibili-patched.apk
