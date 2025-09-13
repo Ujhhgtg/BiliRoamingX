@@ -70,7 +70,7 @@ jobs:
 #        run: unzip patches.zip -d patches
 
       - name: Rename patches
-        run: mv patches/BiliRoamingX-integrations-*.apk integrations.apk && mv patches/BiliRoamingX-patches-*.jar patches.jar
+        run: mv BiliRoamingX-integrations-*.apk integrations.apk && mv BiliRoamingX-patches-*.jar patches.jar
 
       - name: Patch BiliBili
         run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 1,2,3 bilibili.apk
