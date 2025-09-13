@@ -57,10 +57,10 @@ jobs:
           echo "Latest successful run id: $run_id"
           
           gh run download "$run_id" --name patches --dir .
-          ls
 
-      - name: Unzip patches
-        run: unzip patches.zip -d patches
+      # 'gh run download' already unzips the artifact
+#      - name: Unzip patches
+#        run: unzip patches.zip -d patches
 
       - name: Rename patches
         run: mv patches/BiliRoamingX-integrations-*.apk integrations.apk && mv patches/BiliRoamingX-patches-*.jar patches.jar
