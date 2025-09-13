@@ -22,10 +22,9 @@ dependencyResolutionManagement {
         google()
         maven { url = uri("https://jitpack.io") }
         maven {
-            // A repository must be specified for some reason. "registry" is a dummy.
             url = uri("https://maven.pkg.github.com/ReVanced/revanced-patcher")
             credentials {
-                username = gprUser.orNull ?: System.getenv("GITHUB_ACTOR")
+                username = gprUser.orNull ?: System.getenv("GITHUB_USERNAME")
                 password = gprKey.orNull ?: System.getenv("GITHUB_TOKEN")
             }
         }
@@ -33,7 +32,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 include(

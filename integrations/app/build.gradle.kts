@@ -118,14 +118,14 @@ setupAppModule {
     }
 }
 
-gradle.taskGraph.whenReady {
-    if (gradle.taskGraph.allTasks.any { it.name == "distDev" }) {
-        tasks.withType<R8Task> {
-            useFullR8.allowChanges()
-            useFullR8 = false
-        }
-    }
-}
+//gradle.taskGraph.whenReady {
+//    if (gradle.taskGraph.allTasks.any { it.name == "distDev" }) {
+//        tasks.withType<R8Task> {
+//            useFullR8.allowChanges()
+//            useFullR8 = false
+//        }
+//    }
+//}
 
 dependencies {
     implementation(projects.integrations.extend)

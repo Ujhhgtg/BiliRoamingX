@@ -28,8 +28,8 @@ tasks.jar {
         attributes["Description"] = "Patches for BiliRoamingX."
         attributes["Version"] = version
         attributes["Timestamp"] = System.currentTimeMillis().toString()
-        attributes["Source"] = "git@github.com:BiliRoamingX/BiliRoamingX.git"
-        attributes["Author"] = "Kofua"
+        attributes["Source"] = "git@github.com:Ujhhgtg/BiliRoamingX.git"
+        attributes["Author"] = "Ujhhgtg"
         attributes["License"] = "GNU General Public License v3.0"
     }
 }
