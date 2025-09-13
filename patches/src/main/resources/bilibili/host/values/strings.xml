@@ -437,11 +437,7 @@
     <string name="biliroaming_log_share_failed">日志分享失败</string>
     <string name="biliroaming_you_were_cheated">你被骗啦！</string>
     <string name="biliroaming_open_failed">打开失败</string>
-    <string name="biliroaming_blocked_title">封禁说明</string>
-    <string name="biliroaming_blocked_description">你因违反哔哩漫游X使用规则已被拉入黑名单，模块所有功能将不可用，解封时间：%1$s。</string>
     <string name="biliroaming_view_reason">查看理由</string>
-    <string name="biliroaming_unblocked_title">解禁说明</string>
-    <string name="biliroaming_unblocked_description">你的哔哩漫游X使用资格已恢复，重启生效。</string>
     <string name="biliroaming_reboot_now">立即重启</string>
     <string name="biliroaming_block_comment_feedback_title">屏蔽评论氛围反馈</string>
     <string name="biliroaming_not_lock_orientation_title">不锁定屏幕旋转方向</string>

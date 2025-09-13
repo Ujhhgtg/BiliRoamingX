@@ -18,7 +18,6 @@ import java.nio.channels.FileChannel
 import java.util.concurrent.TimeUnit
 
 object Accounts {
-
     @JvmStatic
     private val accountPrefs by lazy {
         val accountDir = Utils.getContext().getDir("account", Context.MODE_PRIVATE)
@@ -35,10 +34,6 @@ object Accounts {
     @JvmStatic
     @Volatile
     private var accountInfoCache: AccountInfo? = null
-
-    @JvmStatic
-    var userBlocked = cachePrefs.getBoolean("user_blocked_$mid", false)
-        private set
 
     @JvmStatic
     val cookieSESSDATA get() = get()?.cookie?.cookies?.find { it.name == "SESSDATA" }?.value.orEmpty()
@@ -150,15 +145,12 @@ object Accounts {
         if (isSignOut) {
             accountCache = null
             accountInfoCache = null
-            userBlocked = false
         } else if (!isUpdateAccount) {
             accountCache = null
             Utils.async { get() }
         } else {
             accountInfoCache = null
             Utils.async { getInfo() }
-            if (Utils.isMainProcess())
-                Utils.async(5000L) { checkUserStatus() }
         }
         if ((isSignOut || isSwitchAccount) && Utils.isMainProcess() && Settings.Skin()) {
             Settings.Skin.save(false)
@@ -166,33 +158,9 @@ object Accounts {
             Toasts.showLongWithId("biliroaming_theme_closed_by_account")
         }
     }
-
-    @JvmStatic
-    private var dialogShowing = false
-
-    @JvmStatic
-    private fun checkUserStatus() = runCatching {
-        val mid = Accounts.mid
-        if (mid <= 0) return@runCatching
-        val checkInterval = TimeUnit.HOURS.toMillis(1)
-        val key = "user_status_last_check_time_$mid"
-        val lastCheckTime = cachePrefs.getLong(key, 0L)
-        val current = System.currentTimeMillis()
-        if (lastCheckTime != 0L && current - lastCheckTime < checkInterval)
-            return@runCatching
-        cachePrefs.edit { putLong(key, current) }
-        val api = StringDecoder.decode("82kPqomaPXmNG1KYpemYwCxgGaViTMfWQ7oNyBh48mRC").toString(Charsets.UTF_8)
-        require(api.startsWith(StringDecoder.decode("JULvAwoUgmc").toString(Charsets.UTF_8)))
-        val info = HttpClient.get("$api/$mid")?.data<BlacklistInfo>() ?: return@runCatching
-        val blockedKey = "user_blocked_$mid"
-    }.onFailure {
-        if (it is IllegalArgumentException)
-            throw it
-    }
 }
 
 class PassportChangeReceiver : BroadcastReceiver() {
-
     companion object {
         private const val ACTION = "com.bilibili.passport.ACTION_MSG"
         const val ACTION_SIGN_OUT = 2

@@ -64,6 +64,7 @@ object Upgrade : ApiHook() {
     }
 
     private fun pagingCheck(page: Int): JSONObject? {
+        // TODO: provide correct version info in GitHub Actions
         val context = Utils.getContext()
         val sn = context.packageManager.getApplicationInfo(
             context.packageName, PackageManager.GET_META_DATA
@@ -72,10 +73,10 @@ object Upgrade : ApiHook() {
         val patchVersionCode = BuildConfig.VERSION_CODE
         val pageUrl = "$UPGRADE_CHECK_API?page=$page&per_page=100"
         val response = JSONArray(URL(pageUrl).readText())
-        val mobiApp = Utils.getMobiApp()
+//        val mobiApp = Utils.getMobiApp()
         for (data in response) {
-            if (!data.optString("tag_name").startsWith("$mobiApp-"))
-                continue
+//            if (!data.optString("tag_name").startsWith("$mobiApp-"))
+//                continue
             val body = data.optString("body").replace("\r\n", "\n")
 //            val values = changelogRegex.matchEntire(body)?.groupValues ?: break
 //            val versionSum = values[1]

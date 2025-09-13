@@ -26,6 +26,7 @@ import app.revanced.bilibili.utils.*
 import app.revanced.bilibili.widget.RecyclerViewAdapter
 import app.revanced.bilibili.widget.RecyclerViewHolder
 import app.revanced.bilibili.widget.disableChangeAnimations
+import androidx.core.net.toUri
 
 @SettingFragment("biliroaming_setting_tool")
 class ToolFragment : BiliRoamingBaseSettingFragment() {
@@ -58,7 +59,7 @@ class ToolFragment : BiliRoamingBaseSettingFragment() {
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton("Go") { _, _ ->
                 val editUrl = editText.text.toString().trim()
-                val uri = Uri.parse(editUrl.ifEmpty { hintUrl })
+                val uri = editUrl.ifEmpty { hintUrl }.toUri()
                 runCatching {
                     Utils.routeTo(uri, context)
                     if (editUrl.isEmpty()) Utils.runOnMainThread(300) {

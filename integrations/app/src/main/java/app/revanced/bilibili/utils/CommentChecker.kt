@@ -10,7 +10,6 @@ import com.bapis.bilibili.main.community.reply.v1.ReplyMoss
 import com.bilibili.lib.moss.api.BusinessException
 
 object CommentChecker {
-
     @Suppress("ConvertObjectToDataObject")
     sealed class CheckResult {
         object Valid : CheckResult()
@@ -27,16 +26,6 @@ object CommentChecker {
                 }
                 Toasts.showShortWithId("biliroaming_check_comment_toast", delay / 1000)
             }
-        }
-        Utils.runOnMainThread(300) {
-            val moduleKeywords = arrayOf(
-                StringDecoder.decode("2yuDZbZG3").toString(Charsets.UTF_8),
-                StringDecoder.decode("6u5XQC").toString(Charsets.UTF_8),
-                StringDecoder.decode("5LXF9WYecW").toString(Charsets.UTF_8),
-            )
-            val lowerMessage = message.replace(" ", "").lowercase()
-            if (moduleKeywords.any { lowerMessage.contains(it) })
-                Toasts.showLong("你貌似正在站内发表违反模块使用规则的言论，请考虑删除，否则将被拉黑")
         }
     }
 
