@@ -39,10 +39,28 @@ jobs:
       - name: Download ReVanced Cli
         run: wget "https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar"
 
-      - name: Download Bilibili
-#        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
+      - name: Restore BiliBili original apk cache
+        uses: actions/cache@v4
+        id: cache-download
+        with:
+          path: ./downloads/bilibili.tar.gz
+          key: bilibili
+
+      - name: Download file if not cached
+        if: steps.cache-download.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p downloads
         # use old version 8.16.0 cuz new version has a lot of breaking changes
-        run: wget "https://ucdl.25pp.com/fs08/2024/10/10/6/110_bd3b286f9053c9a1a2593b8205e1dc34.apk" -O bilibili.apk
+          wget "https://ucdl.25pp.com/fs08/2024/10/10/6/110_bd3b286f9053c9a1a2593b8205e1dc34.apk" -O downloads/bilibili.tar.gz
+
+      - name: Unzip BiliBili original apk
+        run: |
+          tar -xzf ./downloads/bilibili.tar.gz -C ./bilibili.apk
+
+#      - name: Download BiliBili
+##        run: wget "https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk" -O bilibili.apk
+#        # use old version 8.16.0 cuz new version has a lot of breaking changes
+#        run: wget "https://ucdl.25pp.com/fs08/2024/10/10/6/110_bd3b286f9053c9a1a2593b8205e1dc34.apk" -O bilibili.apk
 
       - name: Download patches
         env:
