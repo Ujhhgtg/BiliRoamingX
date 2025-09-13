@@ -24,7 +24,7 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://maven.pkg.github.com/ReVanced/revanced-patcher")
             credentials {
-                username = gprUser.orNull ?: System.getenv("GITHUB_USERNAME")
+                username = gprUser.orNull ?: System.getenv("GITHUB_ACTOR")
                 password = gprKey.orNull ?: System.getenv("GITHUB_TOKEN")
             }
         }
