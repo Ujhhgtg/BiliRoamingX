@@ -29,7 +29,7 @@ tasks.jar {
         attributes["Version"] = version
         attributes["Timestamp"] = System.currentTimeMillis().toString()
         attributes["Source"] = "git@github.com:Ujhhgtg/BiliRoamingX.git"
-        attributes["Author"] = "Ujhhgtg"
+        attributes["Author"] = "Ujhhgtg "
         attributes["License"] = "GNU General Public License v3.0"
     }
 }
