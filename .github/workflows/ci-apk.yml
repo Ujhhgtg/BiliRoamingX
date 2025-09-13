@@ -57,6 +57,7 @@ jobs:
           echo "Latest successful run id: $run_id"
           
           gh run download "$run_id" --name patches --dir .
+          ls
 
       - name: Unzip patches
         run: unzip patches.zip -d patches
