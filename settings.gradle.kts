@@ -1,5 +1,20 @@
 @file:Suppress("UnstableApiUsage")
 
+// Source - https://stackoverflow.com/a/60474096
+// Posted by i30mb1, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-02-01, License - CC BY-SA 4.0
+fun getLocalProperty(key: String, file: String = "local.properties"): Any {
+    val properties = java.util.Properties()
+    val localProperties = File(file)
+    if (localProperties.isFile) {
+        java.io.InputStreamReader(java.io.FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
+            properties.load(reader)
+        }
+    } else error("File from not found")
+
+    return properties.getProperty(key)
+}
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -14,8 +29,8 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
-    val gprUser = settings.providers.gradleProperty("gpr.user")
-    val gprKey = settings.providers.gradleProperty("gpr.key")
+    val gprUser = getLocalProperty("gpr.user")
+    val gprKey = getLocalProperty("gpr.key")
     repositories {
         mavenCentral()
         mavenLocal()
@@ -24,8 +39,8 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://maven.pkg.github.com/ReVanced/revanced-patcher")
             credentials {
-                username = gprUser.orNull ?: System.getenv("GITHUB_ACTOR")
-                password = gprKey.orNull ?: System.getenv("GITHUB_TOKEN")
+                username = gprUser as String
+                password = gprKey as String
             }
         }
     }
